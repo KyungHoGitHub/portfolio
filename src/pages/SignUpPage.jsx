@@ -1,13 +1,26 @@
-import {Button, Form, Input, Row} from "antd";
+import {Button, Form, Input, InputNumber, Row} from "antd";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
 
 const SignUpPage = () => {
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        console.log(values);
+        const result = await axios.post("http://localhost:8080/user/signup", values);
+        if (result) {
+            console.log(result);
+            navigate("/");
+        }
+        console.log('Success:', values);
+    };
+
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+
 
     return (
         <>
@@ -82,6 +95,12 @@ const SignUpPage = () => {
                         <Input/>
                     </Form.Item>
                     <Form.Item
+                        label="나이"
+                        name="age"
+                    >
+                        <InputNumber/>
+                    </Form.Item>
+                    <Form.Item
                         name="remember"
                         valuePropName="checked"
                         wrapperCol={{
@@ -104,9 +123,9 @@ const SignUpPage = () => {
                     </Form.Item>
                 </Form>
                 <Button
-                style={{
-                    marginLeft: 10,
-                }}
+                    style={{
+                        marginLeft: 10,
+                    }}
                 >
                     중복확인
                 </Button>

@@ -1,4 +1,5 @@
-import { Layout, Card, Image, List, Table, Typography, Row, Col } from "antd";
+import {Layout, Card, Image, List, Table, Typography, Row, Col, Button, Menu} from "antd";
+import {Link} from "react-router-dom";
 
 const { Header, Content } = Layout;
 
@@ -15,8 +16,13 @@ const DashBoard = () => {
         <Layout>
             <Header style={{ backgroundColor: '#fff', padding: '0 20px', position: 'fixed', top: 0, width: '100%', zIndex: 1 }}>
                 <Row>
-                    <Col span={4}>
+                    <Col span={6}>
                         <h1 style={{ left:0 }}>Make your portfolio</h1>
+                    </Col>
+                    <Col span={6}>
+                      <div>
+                                <Link to="/project">Project</Link>
+                      </div>
                     </Col>
                 </Row>
             </Header>
